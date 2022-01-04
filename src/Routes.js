@@ -1,24 +1,27 @@
-import { React, lazy } from 'react';
+import { lazy, React } from 'react';
 
 const ContactsList = lazy(() =>
-  import('./Pages/Contactlist' /* webpackChunkName: "Contactlist" */),
+  import(
+    './Pages/ContactPage/ContactsPage' /* webpackChunkName: "Contactlist" */
+  ),
 );
 const ContactDetails = lazy(() =>
-  import('./Pages/ContactDetails' /* webpackChunkName: "ContactDetails" */),
+  import(
+    './Pages/ContactDetails/ContactDetail' /* webpackChunkName: "ContactDetails" */
+  ),
 );
 
 const routes = [
   {
     path: '/',
     label: 'ContactsList',
-    component: ContactsList,
-    exact: true,
+    element: ContactsList,
     isProtected: false,
   },
   {
     path: '/ContactDetails/',
-    label: 'ContactDetails',
-    component: ContactDetails,
+    label: ContactDetails,
+    element: ContactDetails,
     isProtected: true,
     // exact: true,
   },
