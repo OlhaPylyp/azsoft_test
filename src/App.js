@@ -1,10 +1,10 @@
-import { React, lazy } from 'react';
+import React from 'react';
 // import styles from './App.css';
 import { useAlert } from 'react-alert';
 import { useState, useEffect } from 'react';
 // import ContactsList from './Pages/ContactList/ContactsPage';
 import ContactPage from './Pages/ContactPage';
-import Section from './Components/Section/Section';
+// import Section from './Components/Section/Section';
 
 // import { Suspense } from 'react';
 // import { Route, Routes } from 'react-router-dom';
@@ -25,9 +25,9 @@ function App() {
   return (
     <div>
       {/* <Header /> */}
-      <Section title="Contacts list">
-        <ContactPage />
-      </Section>
+      {/* <Section title="Contacts list"> */}
+      <ContactPage />
+      {/* </Section> */}
 
       {/* <Suspense fallback={<p>Is loading....</p>}>
         <Routes>

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -25,6 +26,7 @@ const Contacts = ({ onSubmit }) => {
     };
 
     onSubmit(newItem);
+    setState({ name: '', number: '', email: '' });
   };
 
   const handleChange = e => {
