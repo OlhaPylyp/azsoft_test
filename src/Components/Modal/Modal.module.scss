@@ -1,0 +1,183 @@
+.modal_open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.modal {
+  background-color: #fff;
+  position: relative;
+  padding: 80px 15px 30px 15px;
+  max-width: 320px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 0px 22px 40px rgba(0, 0, 0, 0.1);
+}
+.modal_backArrow {
+  margin-top: 3px;
+}
+.modal_closeButton {
+  position: absolute;
+
+  width: 100vw;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  padding-left: 10px;
+  align-items: center;
+  text-align: left;
+  background-color: #eff1f3;
+  border: none;
+  transition: transform 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* border-radius: 100%; */
+}
+
+.modal_closeButton:hover,
+.modal_closeButton:focus {
+  transform: scale(1.2);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.modal_icon {
+  fill: black;
+  margin-top: 12px;
+}
+
+.modal_title {
+  font: normal 700 18px/1.22 Verdana;
+  text-align: left;
+  color: #212121;
+  letter-spacing: 0.04em;
+}
+
+.modal_text {
+  font: normal 700 16px/1.22 Verdana;
+  text-align: center;
+  color: #264061;
+  letter-spacing: 0.04em;
+  margin-top: 22px;
+}
+
+.modal_container {
+  max-width: 330px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.modal_categories {
+  margin-top: 22px;
+}
+
+.modal_categories-item {
+  color: #9b9faa;
+  font: normal 400 14px/1.21 Verdana;
+  width: 80%;
+}
+
+.modal_categories-item:not(:last-child) {
+  padding-bottom: 15px;
+}
+
+.modal_button {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  border-radius: 30px;
+  padding: 14px;
+  width: 176px;
+  height: 44px;
+  color: #fff;
+  font: normal 700 14px/1.2 Verdana;
+  background-color: #fc842d;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border: none;
+  transition: transform 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.modal_button:hover,
+.modal_button:focus {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 399px) {
+  .modal_closeButton {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 0;
+    width: 100vw;
+    height: 40px;
+    padding-left: 10px;
+    background-color: #eff1f3;
+  }
+  .modal {
+    max-width: 399px;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .modal_closeButton {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 100%;
+  }
+
+  .modal {
+    margin: 0;
+    padding: 15px;
+    padding-top: 30px;
+  }
+
+  .backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.12);
+    z-index: 1200;
+    overflow-y: scroll;
+  }
+
+  .modal_icon {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal_title {
+    text-align: center;
+    font: normal 700 26px/1.22 Verdana;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .modal {
+    max-width: 594px;
+    padding: 43px 64px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .modal {
+    max-width: 690px;
+    padding: 64px 90px;
+  }
+}

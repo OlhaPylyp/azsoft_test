@@ -10,12 +10,11 @@ const ContactItem = ({ contact, onClick }) => {
 
   return (
     <li key={contact.id} className={styles.item}>
-      <Link to={`${pathname}${contact.id}`}>
-        <div className={styles.contact_list}>
-          {' '}
-          <span className={styles.contact_item_name}>{contact.name}:</span>
-          <span className={styles.contact_item_tel}>{contact.number}</span>{' '}
-        </div>
+      <Link to={`${pathname}${contact.id}`} className={styles.item_link}>
+        {/* <div className={styles.item__container}> */}{' '}
+        <span className={styles.contact_item_name}>{contact.name}:</span>
+        <span className={styles.contact_item_tel}>{contact.number}</span>{' '}
+        {/* </div> */}
       </Link>
 
       <button
@@ -25,6 +24,7 @@ const ContactItem = ({ contact, onClick }) => {
         className={styles.item__btn}
       >
         <svg
+          onClick={onClick}
           width="20"
           height="20"
           viewBox="0 0 30 30"
