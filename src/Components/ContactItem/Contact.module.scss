@@ -1,0 +1,39 @@
+.item {
+  display: flex;
+  &__name {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px;
+    line-height: 2;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  &__btn {
+    display: inline-flex;
+    justify-content: center;
+    // width: -webkit-fit-content;
+    // width: -moz-fit-content;
+    width: 50px;
+    padding: 8px 16px;
+    border: 2px;
+    border-radius: 40px;
+    background: #62d8c8;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(8, 8, 8, 0.12);
+    font-size: 16px;
+    line-height: 16px;
+  }
+  &__basket {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    fill: darkblue;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+.contact_item_tel {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 14px;
+  line-height: 2;
+  font-weight: 500;
+}

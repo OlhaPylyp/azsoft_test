@@ -10,7 +10,7 @@ const initialState = {
   email: '',
 };
 
-const Contacts = ({ onSubmit }) => {
+const ContactForm = ({ onSubmit }) => {
   const [state, setState] = useState(initialState);
 
   const { name, number, email } = state;
@@ -26,7 +26,6 @@ const Contacts = ({ onSubmit }) => {
     };
 
     onSubmit(newItem);
-    setState({ name: '', number: '', email: '' });
   };
 
   const handleChange = e => {
@@ -51,7 +50,17 @@ const Contacts = ({ onSubmit }) => {
             required
           />
         </label>
-
+        <label>
+          <span>Email:</span>
+          <input
+            type="text"
+            value={email}
+            name="email"
+            onChange={handleChange}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          />
+        </label>
         <label>
           <input
             type="tel"
@@ -60,19 +69,6 @@ const Contacts = ({ onSubmit }) => {
             onChange={handleChange}
             pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
             title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
-            required
-          />
-        </label>
-        <label>
-          <span>Name:</span>
-          <input
-            type="text"
-            value={name}
-            name="name"
-            onChange={handleChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
           />
         </label>
         <button type="submit">+ Add</button>
@@ -81,8 +77,8 @@ const Contacts = ({ onSubmit }) => {
   );
 };
 
-Contacts.propTypes = {
+ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default Contacts;
+export default ContactForm;

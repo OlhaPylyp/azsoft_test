@@ -1,18 +1,11 @@
 import React from 'react';
-import { Link, Outlet, useLocation, withRouter } from 'react-router-dom';
-import { useAlert } from 'react-alert';
-import styles from './ContactPage.module.scss';
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-// import ContactsList from './Pages/ContactList/ContactsPage';
-import ContactList from '../../Components/ContactList/ContactList';
 import ContactForm from '../../Components/ContactForm/ContactForm';
-import SearchContact from '../../Components/SearchContact';
-
-const ContactPage = () => {
+import { useState, useEffect } from 'react';
+// import ContactDetailItem from '../../Components/ContctdetailsItem';
+import ContactList from '../../Components/ContactList/ContactList';
+const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
-
   useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
     setContacts(JSON.parse(storageContacts));
@@ -22,7 +15,7 @@ const ContactPage = () => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
 
-  const handleFilter = ({ target }) => setFilter(target.value);
+  // const handleFilter = ({ target }) => setFilter(target.value);
 
   const contactsArr = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
@@ -40,20 +33,14 @@ const ContactPage = () => {
     const newContactList = contacts.filter(contact => target.id !== contact.id);
     setContacts([...newContactList]);
   };
-
   return (
     <>
-      <SearchContact filter={filter} onChange={handleFilter} />
+      {' '}
+      <div>ghbdtn</div>
+      {/* <ContactDetailItem contacts={contactsArr} /> */}
       <ContactList contacts={contactsArr} onClick={handleDeleteItem} />
-      <NavLink
-        to="ContactDetailPage"
-        // className={styles.NavLink}
-        // activeClassName={styles.NavLinkActive}
-      >
-        <div> Добавить</div>
-      </NavLink>
+      <ContactForm onSubmit={handleAddContact} />
     </>
   );
 };
-
-export default ContactPage;
+export default ContactDetailPage;

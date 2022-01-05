@@ -1,29 +1,36 @@
 import { lazy, React } from 'react';
 
-const ContactsList = lazy(() =>
+const ContactsPage = lazy(() =>
   import(
     './Pages/ContactPage/ContactsPage' /* webpackChunkName: "Contactlist" */
   ),
 );
-const ContactDetails = lazy(() =>
+const ContactDetailPage = lazy(() =>
   import(
-    './Pages/ContactDetails/ContactDetail' /* webpackChunkName: "ContactDetails" */
+    './Pages/ContactDetailsPage/ContactDetailPage' /* webpackChunkName: "ContactDetails" */
   ),
 );
 
 const routes = [
   {
     path: '/',
-    label: 'ContactsList',
-    element: ContactsList,
+    label: 'ContactsPage',
+    element: ContactsPage,
     isProtected: false,
   },
   {
-    path: '/ContactDetails/',
-    label: ContactDetails,
-    element: ContactDetails,
+    path: '/ContactDetailPage',
+    label: ContactDetailPage,
+    element: ContactDetailPage,
     isProtected: true,
     // exact: true,
   },
+  {
+    path: '/ContactDetailPage/:id',
+    label: 'Contact Details',
+    element: ContactDetailPage,
+    isProtected: true,
+  },
 ];
+
 export default routes;
