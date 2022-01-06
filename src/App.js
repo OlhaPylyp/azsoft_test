@@ -18,14 +18,17 @@ import routes from './Routes';
 //   ),
 // );
 import ContactDetailPage from './Pages/ContactDetailsPage';
-import ContactDetailItem from './Components/ContctdetailsItem';
+import ContactDetailItem from './Components/ContactDetailsItem';
 function App() {
   return (
     <div className={`${styles.Wrapper} ${styles.container}`}>
       <Routes>
         <Route path="/" element={<ContactPage />} />
         <Route path="/ContactDetailPage/" element={<ContactDetailPage />} />
-        <Route path="/ContactDetailPage/:id " element={<ContactDetailItem />} />
+        <Route
+          path="/ContactDetailPage/:contactId"
+          element={<ContactDetailItem />}
+        />
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

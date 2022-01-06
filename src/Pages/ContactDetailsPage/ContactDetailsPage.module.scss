@@ -13,3 +13,25 @@
     background-color: #137220;
   }
 }
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  color: rgb(7, 7, 7);
+  background-color: #fdc435;
+  width: 70px;
+  border-radius: 20px;
+  margin-right: 30px;
+  border: 1px solid rgba(68, 30, 4, 0.5);
+  &_container {
+    display: flex;
+    justify-content: center;
+  }
+}
+.list {
+  // display: flex;
+  max-width: 660px;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+}

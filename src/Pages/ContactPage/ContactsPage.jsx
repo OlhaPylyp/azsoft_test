@@ -36,13 +36,13 @@ const ContactPage = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase()),
   );
 
-  const handleAddContact = newContact => {
-    if (contacts.some(contact => contact.name === newContact.name)) {
-      window.alert(`Contact is already in contacts.`);
-      return;
-    }
-    setContacts(prevState => [...prevState, newContact]);
-  };
+  // const handleAddContact = newContact => {
+  //   if (contacts.some(contact => contact.name === newContact.name)) {
+  //     window.alert(`Contact is already in contacts.`);
+  //     return;
+  //   }
+  //   setContacts(prevState => [...prevState, newContact]);
+  // };
 
   const showModalForDeleteContact = ({ target }) => {
     console.log('target=', target);
@@ -64,7 +64,7 @@ const ContactPage = () => {
   };
   return (
     <>
-      <SearchContact filter={filter} onChange={handleFilter} />
+      {/* <SearchContact filter={filter} onChange={handleFilter} /> */}
       <h2 className={styles.title}>Contact List</h2>
       <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} />
       {showModal && (

@@ -4,9 +4,14 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ContactDetailsPage.module.scss';
 import ContactList from '../../Components/ContactList/ContactList';
+import ContactDetailItem from '../../Components/ContactDetailsItem';
+import Modal from '../../Components/Modal';
+
 const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
+  const [contactId, setId] = useState('');
+  const [showModal, setModal] = useState(false);
   useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
     setContacts(JSON.parse(storageContacts));
@@ -16,7 +21,7 @@ const ContactDetailPage = () => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
 
-  // const handleFilter = ({ target }) => setFilter(target.value);
+  const handleFilter = ({ target }) => setFilter(target.value);
 
   const contactsArr = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
@@ -30,10 +35,19 @@ const ContactDetailPage = () => {
     setContacts(prevState => [...prevState, newContact]);
   };
 
-  const handleDeleteItem = ({ target }) => {
-    const newContactList = contacts.filter(contact => target.id !== contact.id);
+  const showModalForDeleteContact = ({ target }) => {
+    console.log('target=', target);
+    console.log('targetId=', target.id);
+    setId(target.id);
+
+    toogleModal();
+  };
+
+  const handleDeleteItem = () => {
+    const newContactList = contacts.filter(contact => contact.id !== contactId);
     setContacts([...newContactList]);
   };
+  const toogleModal = () => setModal(!showModal);
   return (
     <>
       {' '}
@@ -43,7 +57,24 @@ const ContactDetailPage = () => {
       </Link>
       {/* <ContactDetailItem contacts={contactsArr} /> */}
       <ContactForm onSubmit={handleAddContact} />
-      <ContactList contacts={contactsArr} onClick={handleDeleteItem} />
+      {/* <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} /> */}
+      <ContactDetailItem
+        contacts={contactsArr}
+        onClick={showModalForDeleteContact}
+      />
+      {showModal && (
+        <Modal onClick={() => toogleModal} close={toogleModal}>
+          <p className={styles.text}>
+            Are you sure you want to delete the contact
+          </p>
+          <button className={styles.btn} onClick={handleDeleteItem}>
+            Yes
+          </button>
+          <button className={styles.btn} onClick={toogleModal}>
+            No
+          </button>
+        </Modal>
+      )}
     </>
   );
 };
