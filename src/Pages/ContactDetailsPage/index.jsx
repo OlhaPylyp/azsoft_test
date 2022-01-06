@@ -1,5 +1,6 @@
 import React from 'react';
-import ContactForm from '../../Components/ContactForm/ContactForm';
+import Form from '../../Components/Form';
+import ContactForm from '../../Components/ContactForm';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ContactDetailsPage.module.scss';
@@ -57,7 +58,8 @@ const ContactDetailPage = () => {
         go Back
       </Link>
       {/* <ContactDetailItem contacts={contactsArr} /> */}
-      <ContactForm onSubmit={handleAddContact} />
+      {/* <ContactForm onSubmit={handleAddContact} /> */}
+      <Form onSubmit={handleAddContact} />
       {/* <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} /> */}
       <ContactDetailItem
         contacts={contactsArr}

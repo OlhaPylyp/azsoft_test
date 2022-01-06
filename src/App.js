@@ -19,12 +19,14 @@ import routes from './Routes';
 // );
 import ContactDetailPage from './Pages/ContactDetailsPage';
 import ContactDetailItem from './Components/ContactDetailsItem';
+import ContactItem from './Components/ContactItem/ContactItem';
 function App() {
   return (
     <div className={`${styles.Wrapper} ${styles.container}`}>
       <Routes>
         <Route path="/" element={<ContactPage />} />
-        <Route path="/ContactDetailPage/" element={<ContactDetailPage />} />
+        <Route path="/ContactDetailPage" element={<ContactDetailPage />} />
+
         <Route
           path="/ContactDetailPage/:contactId"
           element={<ContactDetailItem />}
@@ -32,13 +34,6 @@ function App() {
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-
-      {/* </Suspense>  */}
-      {/* <Footer name={fields} /> */}
-      {/* //   <div className="App-header"> */}
-      {/* <ContainerForHomepage> */}
-      {/* <HomePage /> */}
-      {/* </ContainerForHomepage> */}
     </div>
   );
 }

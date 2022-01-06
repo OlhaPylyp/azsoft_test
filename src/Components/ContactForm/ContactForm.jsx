@@ -31,6 +31,8 @@ const ContactForm = ({ onSubmit }) => {
   };
   // onSubmit(inputs);
   const handleChange = e => {
+    console.log('[e.target.name]=', [e.target.name]);
+    console.log('[e.target.value]=', e.target.value);
     setState(prevState => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -38,8 +40,13 @@ const ContactForm = ({ onSubmit }) => {
   };
   let handleChangeNew = (i, e) => {
     let newFormValues = [...inputs];
+    console.log(
+      'newFormValues[i][e.target.name]=',
+      newFormValues[i][e.target.name],
+    );
     newFormValues[i][e.target.name] = e.target.value;
     setInputValues(newFormValues);
+    console.log('newFormValuesinputs=', newFormValues);
   };
 
   let addFormFields = () => {
