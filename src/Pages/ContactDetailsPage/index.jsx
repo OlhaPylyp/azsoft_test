@@ -21,7 +21,7 @@ const ContactDetailPage = () => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
 
-  const handleFilter = ({ target }) => setFilter(target.value);
+  // const handleFilter = ({ target }) => setFilter(target.value);
 
   const contactsArr = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),

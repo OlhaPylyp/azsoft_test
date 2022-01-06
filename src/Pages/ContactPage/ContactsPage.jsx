@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 // import ContactsList from './Pages/ContactList/ContactsPage';
 import ContactList from '../../Components/ContactList/ContactList';
-import SearchContact from '../../Components/SearchContact';
+// import SearchContact from '../../Components/SearchContact';
 
 const ContactPage = () => {
   const [contacts, setContacts] = useState([]);
@@ -36,19 +36,9 @@ const ContactPage = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase()),
   );
 
-  // const handleAddContact = newContact => {
-  //   if (contacts.some(contact => contact.name === newContact.name)) {
-  //     window.alert(`Contact is already in contacts.`);
-  //     return;
-  //   }
-  //   setContacts(prevState => [...prevState, newContact]);
-  // };
-
+  /* Функция открытия и закрытия модального окна с выбором ответов */
   const showModalForDeleteContact = ({ target }) => {
-    console.log('target=', target);
-    console.log('targetId=', target.id);
     setDelete(target.id);
-    console.log('deleteIdContact=', deleteIdContact);
 
     toogleModal();
   };

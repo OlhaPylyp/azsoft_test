@@ -43,7 +43,7 @@ const ContactForm = ({ onSubmit }) => {
   };
 
   let addFormFields = () => {
-    setInputValues([...inputs, { value: '', r: '' }]);
+    setInputValues([...inputs, { value: '' }]);
   };
   let removeFormFields = i => {
     let newFormValues = [...inputs];

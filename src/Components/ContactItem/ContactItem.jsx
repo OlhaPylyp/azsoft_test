@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Contact.module.scss';
-import { createUseStyles } from 'react-jss';
-import { Route, Link, useLocation } from 'react-router-dom';
-// import ContactDetailPage from '../../Pages/ContactDetailsPage/ContactDetailPage';
-import RemoveBtn from '../RemoveBtn';
+import { Link, useLocation } from 'react-router-dom';
+// import RemoveBtn from '../RemoveBtn';
 
 const ContactItem = ({ contact, onClick }) => {
   const { pathname } = useLocation();
@@ -17,8 +15,8 @@ const ContactItem = ({ contact, onClick }) => {
         className={styles.item_link}
       >
         {/* <div className={styles.item__container}> */}{' '}
-        <span className={styles.item_name}>{contact.name}</span>
-        <span className={styles.item_tel}>{contact.number}</span> {/* </div> */}
+        <span className={styles.item_name}>{contact.Surname}</span>
+        <span className={styles.item_tel}>{contact.tel}</span> {/* </div> */}
       </Link>
       <button
         id={contact.id}
