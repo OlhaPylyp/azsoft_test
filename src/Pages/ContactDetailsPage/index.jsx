@@ -46,6 +46,7 @@ const ContactDetailPage = () => {
   const handleDeleteItem = () => {
     const newContactList = contacts.filter(contact => contact.id !== contactId);
     setContacts([...newContactList]);
+    toogleModal();
   };
   const toogleModal = () => setModal(!showModal);
   return (

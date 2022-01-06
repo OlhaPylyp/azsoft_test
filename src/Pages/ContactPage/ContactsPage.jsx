@@ -39,18 +39,17 @@ const ContactPage = () => {
   /* Функция открытия и закрытия модального окна с выбором ответов */
   const showModalForDeleteContact = ({ target }) => {
     setDelete(target.id);
-
     toogleModal();
   };
 
   const toogleModal = () => setModal(!showModal);
 
   const handleDeleteItem = () => {
-    console.log('handleDeleteItemdeleteIdContact', deleteIdContact);
     const newContactList = contacts.filter(
       contact => contact.id !== deleteIdContact,
     );
     setContacts([...newContactList]);
+    toogleModal();
   };
   return (
     <>

@@ -15,7 +15,7 @@ const ContactItem = ({ contact, onClick }) => {
         className={styles.item_link}
       >
         {/* <div className={styles.item__container}> */}{' '}
-        <span className={styles.item_name}>{contact.Surname}</span>
+        <span className={styles.item_name}>{contact.surname}</span>
         <span className={styles.item_tel}>{contact.tel}</span> {/* </div> */}
       </Link>
       <button
