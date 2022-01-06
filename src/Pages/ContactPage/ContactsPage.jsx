@@ -21,11 +21,11 @@ const ContactPage = () => {
   const [showModal, setModal] = useState(false);
   const [deleteIdContact, setDelete] = useState('');
 
-  useEffect(() => {
+  useEffect(contacts => {
     const storageContacts = localStorage.getItem('contacts');
     setContacts(JSON.parse(storageContacts));
   }, []);
-
+  console.log(contacts);
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });

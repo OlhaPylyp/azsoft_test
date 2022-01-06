@@ -49,32 +49,36 @@ const contactsArray = [
 const Form = ({ onSubmit }) => {
   const [state, setState] = useState(contactsArray);
 
-  // const { name, surname } = state;
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newValue = state.map(({ value }) => value);
+    const newItem = {
+      id: uuidv4(), // uuid
+      name: newValue[0],
+      surname: newValue[1],
+      tel: newValue[2],
+    };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
+    console.log(newItem);
 
-  //   const newItem = {
-  //     id: uuidv4(), // uuid
-  //     name,
-  //     surname,
-  //     // number: Number(number),
-  //   };
-
-  // let handleSubmit = event => {
-  //   event.preventDefault();
-  //  setState(state);
-  // };
+    onSubmit(newItem);
+  };
   let handleChange = (i, e) => {
     let newFormValues = [...state];
-
-    const name = newFormValues.map(({ name }) => name);
+    // const name = newFormValues.map(({ name }) => name);
     // const value = newFormValues.map(({ value }) => value);
-    console.log('name', name[i]);
-    console.log('target.name', [e.target.name]);
-    console.log('e.target.value', e.target.value);
-    [e.target.name] = e.target.value;
-    setState(newFormValues);
+    const newValue = state.find(({ name }) => name === e.target.name);
+    if (newValue) {
+      newValue.value = e.target.value;
+      state[newValue.id] = newValue;
+      setState([...state]);
+      console.log('state', state);
+    }
+
+    // setState(prevState => ({
+    //   ...state,
+    //   [e.target.name]: e.target.value,
+    // }));
     console.log('newFormValues', newFormValues);
   };
 
@@ -84,13 +88,10 @@ const Form = ({ onSubmit }) => {
   // };
   let addFormFields = () => {
     const newItem = state.find(({ added }) => added === false);
-    console.log('newItem', newItem);
     if (newItem) {
       newItem.added = true;
       state[newItem.id] = newItem;
       setState([...state]);
-
-      console.log('after contacts', state);
     }
   };
   let removeFormFields = i => {
@@ -102,7 +103,7 @@ const Form = ({ onSubmit }) => {
   return (
     <>
       <div className={styles.form_container}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           {state.map(({ name, type, title, value, pattern, added }, index) =>
             added ? (
               <div className={styles.form_inline} key={index}>
@@ -111,8 +112,8 @@ const Form = ({ onSubmit }) => {
                   <input
                     className={`${styles.input} ${styles.input} `}
                     type={type}
-                    value={value || null}
                     name={name}
+                    // value={name}
                     onChange={e => handleChange(index, e)}
                     pattern={pattern}
                     title={title}
