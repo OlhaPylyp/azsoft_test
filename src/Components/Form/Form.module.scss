@@ -11,29 +11,36 @@
   border-radius: 10px;
   margin-bottom: 30px;
   background-color: rgb(247, 247, 247);
+  &_label {
+    display: block;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 1.17;
+    letter-spacing: 0.01em;
+    color: #757575;
+  }
+  &_field {
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    outline: none;
+  }
+  &_input {
+    width: 90%;
+    border: 1px solid rgba(53, 53, 53, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 2;
+    transition: all var(--main-transition);
+    outline: none;
+  }
 }
 
-.input {
-  width: 100%;
-  border: 1px solid rgba(53, 53, 53, 0.2);
-  border-radius: 4px;
-  cursor: pointer;
-  line-height: 2;
-  transition: all var(--main-transition);
-  outline: none;
-}
 .inputAdd {
   width: 70%;
 }
-.label {
-  display: block;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 18px;
-  line-height: 1.17;
-  letter-spacing: 0.01em;
-  color: black;
-}
+
 .input:focus {
   border-color: #fdc435;
 }
@@ -70,20 +77,24 @@
 }
 .btnRemove {
   display: inline-flex;
-  justify-content: center;
+  position: absolute;
+  top: 30%;
+  left: 92%;
+  width: 40px;
+  //   justify-content: center;
   // width: -webkit-fit-content;
   // width: -moz-fit-content;
-  width: 40px;
-  height: 50px;
+
   margin-bottom: 5px;
-  padding: 12px;
+  padding: 8px;
   border: 2px solid rgba(61, 28, 4, 0.5);
-  border-radius: 15px;
+  border-radius: 20px;
   background: #fdc435;
   color: black;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(252, 132, 45, 0.5);
-  font-size: 16px;
+  font-size: 30px;
+  font-weight: 700px;
   line-height: 16px;
 }
 .form_inline {

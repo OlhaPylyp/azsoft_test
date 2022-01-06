@@ -61,14 +61,9 @@ const Form = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newName = state.find(({ name }) => name === 'name').value;
-
-    const newEmail = state.find(({ name }) => name === 'surname').value;
-
     // const newState = ['name', 'surname', 'tel', 'email'].map(
     //   item => state.find(({ name }) => name === item).value,
     // );
-    // console.log('newState', newState);
 
     const newItem = {
       id: uuidv4(), // uuid
@@ -126,11 +121,11 @@ const Form = ({ onSubmit }) => {
         <form className={styles.form} onSubmit={handleSubmit}>
           {state.map(({ name, type, title, value, pattern, added }, index) =>
             added ? (
-              <div className={styles.form_inline} key={index}>
-                <label className={styles.label}>
-                  <span className={styles.span}>{name}:</span>
+              <div className={styles.form_field} key={index}>
+                <label className={styles.form_label}>
+                  {name}
                   <input
-                    className={`${styles.input} ${styles.input} `}
+                    className={`${styles.form_input}  `}
                     type={type}
                     name={name}
                     // value={name}
@@ -139,6 +134,7 @@ const Form = ({ onSubmit }) => {
                     title={title}
                   />
                 </label>
+
                 {index ? (
                   <button
                     type="button"
@@ -168,7 +164,7 @@ const Form = ({ onSubmit }) => {
               onClick={() => addFormFields()}
               type="button"
             >
-              + Fild
+              + Input
             </button>
           </div>
         </form>
