@@ -1,7 +1,8 @@
 import React from 'react';
 import ContactForm from '../../Components/ContactForm/ContactForm';
 import { useState, useEffect } from 'react';
-// import ContactDetailItem from '../../Components/ContctdetailsItem';
+import { Link } from 'react-router-dom';
+import styles from './ContactDetailsPage.module.scss';
 import ContactList from '../../Components/ContactList/ContactList';
 const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
@@ -36,10 +37,13 @@ const ContactDetailPage = () => {
   return (
     <>
       {' '}
-      <div>ghbdtn</div>
+      <Link to="/" className={styles.link}>
+        {' '}
+        go Back
+      </Link>
       {/* <ContactDetailItem contacts={contactsArr} /> */}
-      <ContactList contacts={contactsArr} onClick={handleDeleteItem} />
       <ContactForm onSubmit={handleAddContact} />
+      <ContactList contacts={contactsArr} onClick={handleDeleteItem} />
     </>
   );
 };

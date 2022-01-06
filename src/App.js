@@ -17,7 +17,7 @@ import routes from './Routes';
 //     './Pages/ContactList/ContactList' /* webpackChunkName: "Contactlist" */
 //   ),
 // );
-import ContactDetailPage from './Pages/ContactDetailsPage/ContactDetailPage';
+import ContactDetailPage from './Pages/ContactDetailsPage';
 import ContactDetailItem from './Components/ContctdetailsItem';
 function App() {
   return (

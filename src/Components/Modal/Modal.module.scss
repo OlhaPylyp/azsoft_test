@@ -10,11 +10,13 @@
 .modal {
   background-color: #fff;
   position: relative;
-  padding: 80px 15px 30px 15px;
+  padding: 300px 15px 30px 15px;
   max-width: 320px;
+  height: 200px;
   margin-right: auto;
   margin-left: auto;
   box-shadow: 0px 22px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 .modal_backArrow {
   margin-top: 3px;
@@ -66,44 +68,6 @@
   max-width: 330px;
   margin-right: auto;
   margin-left: auto;
-}
-
-.modal_categories {
-  margin-top: 22px;
-}
-
-.modal_categories-item {
-  color: #9b9faa;
-  font: normal 400 14px/1.21 Verdana;
-  width: 80%;
-}
-
-.modal_categories-item:not(:last-child) {
-  padding-bottom: 15px;
-}
-
-.modal_button {
-  text-decoration: none;
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-  border-radius: 30px;
-  padding: 14px;
-  width: 176px;
-  height: 44px;
-  color: #fff;
-  font: normal 700 14px/1.2 Verdana;
-  background-color: #fc842d;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  border: none;
-  transition: transform 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.modal_button:hover,
-.modal_button:focus {
-  transform: scale(1.05);
 }
 
 @media screen and (max-width: 399px) {

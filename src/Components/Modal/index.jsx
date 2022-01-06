@@ -20,13 +20,13 @@ function Modal({ close, children }) {
     }
   };
 
-  const backdropClick = e => {
-    if (e.target !== e.currentTarget) {
-      return;
-    } else close();
-  };
+  //   const backdropClick = e => {
+  //     if (e.target !== e.currentTarget) {
+  //       return;
+  //     } else close();
+  //   };
   return createPortal(
-    <div className={styles.backdrop} onClick={backdropClick}>
+    <div className={styles.backdrop}>
       <div className={styles.modal}>
         {children}
         <button

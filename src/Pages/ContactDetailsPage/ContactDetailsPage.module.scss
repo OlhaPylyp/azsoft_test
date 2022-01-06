@@ -1,0 +1,15 @@
+.link {
+  width: 8%;
+  padding: 10px;
+  color: black;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 10px;
+  font-weight: 700;
+
+  background-color: #fdc435;
+  &:hover {
+    background-color: #137220;
+  }
+}

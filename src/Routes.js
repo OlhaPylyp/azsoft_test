@@ -6,9 +6,7 @@ const ContactsPage = lazy(() =>
   ),
 );
 const ContactDetailPage = lazy(() =>
-  import(
-    './Pages/ContactDetailsPage/ContactDetailPage' /* webpackChunkName: "ContactDetails" */
-  ),
+  import('./Pages/ContactDetailsPage' /* webpackChunkName: "ContactDetails" */),
 );
 
 const routes = [

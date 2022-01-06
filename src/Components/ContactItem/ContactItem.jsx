@@ -13,8 +13,7 @@ const ContactItem = ({ contact, onClick }) => {
       <Link to={`${pathname}${contact.id}`} className={styles.item_link}>
         {/* <div className={styles.item__container}> */}{' '}
         <span className={styles.contact_item_name}>{contact.name}:</span>
-        <span className={styles.contact_item_tel}>{contact.number}</span>{' '}
-        {/* </div> */}
+        <span className={styles.item_tel}>{contact.number}</span> {/* </div> */}
       </Link>
 
       <button

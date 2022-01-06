@@ -6,11 +6,13 @@ import styles from './ContactList.module.scss';
 
 const ContactList = ({ contacts, onClick }) => {
   return (
-    <ul className={styles.list}>
-      {contacts.map(contact => (
-        <ContactItem contact={contact} onClick={onClick} />
-      ))}
-    </ul>
+    <div>
+      <ul className={styles.list}>
+        {contacts.map(contact => (
+          <ContactItem contact={contact} onClick={onClick} />
+        ))}
+      </ul>
+    </div>
   );
 };
 
