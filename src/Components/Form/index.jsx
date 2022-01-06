@@ -44,6 +44,16 @@ const contactsArray = [
     title: 'Имя может состоять только из букв, апострофа, тире и пробелов. ',
     added: false,
   },
+  {
+    id: 4,
+    name: 'work',
+    value: '',
+    type: 'text',
+    pattern:
+      '+?( |-|.)?d{1,2}( |-|.)?)?((?d{3})?|d{3})( |-|.)?(d{3}( |-|.)?d{4}',
+    title: 'Место роботы только из букв, апострофа, тире и пробелов. ',
+    added: false,
+  },
 ];
 
 const Form = ({ onSubmit }) => {
@@ -51,12 +61,22 @@ const Form = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newValue = state.map(({ value }) => value);
+    const newName = state.find(({ name }) => name === 'name').value;
+
+    const newEmail = state.find(({ name }) => name === 'surname').value;
+
+    // const newState = ['name', 'surname', 'tel', 'email'].map(
+    //   item => state.find(({ name }) => name === item).value,
+    // );
+    // console.log('newState', newState);
+
     const newItem = {
       id: uuidv4(), // uuid
-      name: newValue[0],
-      surname: newValue[1],
-      tel: newValue[2],
+      name: state.find(({ name }) => name === 'name').value,
+      surname: state.find(({ name }) => name === 'surname').value,
+      tel: state.find(({ name }) => name === 'tel').value,
+      email: state.find(({ name }) => name === 'email').value,
+      work: state.find(({ name }) => name === 'work').value,
     };
 
     console.log(newItem);
