@@ -1,14 +1,12 @@
-import React from 'react';
-import Form from '../../Components/Form';
-import ContactForm from '../../Components/ContactForm';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './ContactDetailsPage.module.scss';
-import ContactList from '../../Components/ContactList/ContactList';
-import ContactDetailItem from '../../Components/ContactDetailsList';
-import Modal from '../../Components/Modal';
+import { React, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import styles from './ContactDetailList.module.scss';
+import { useParams, Link } from 'react-router-dom';
+import ContactDetailItem from '../ContactDetailsItem';
+import Modal from '../Modal';
 
-const ContactDetailPage = () => {
+const ContactDetailList = () => {
+  let params = useParams();
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
   const [contactId, setId] = useState('');
@@ -23,18 +21,11 @@ const ContactDetailPage = () => {
   });
 
   // const handleFilter = ({ target }) => setFilter(target.value);
+  const contactById = contacts.filter(({ id }) => id === params.contactId);
 
-  const contactsArr = contacts.filter(contact =>
+  const contactsArr = contactById.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
   );
-
-  const handleAddContact = newContact => {
-    if (contacts.some(contact => contact.name === newContact.name)) {
-      window.alert(`Contact is already in contacts.`);
-      return;
-    }
-    setContacts(prevState => [...prevState, newContact]);
-  };
 
   const showModalForDeleteContact = ({ target }) => {
     console.log('target=', target);
@@ -57,14 +48,10 @@ const ContactDetailPage = () => {
         {' '}
         go Back
       </Link>
-      {/* <ContactDetailItem contacts={contactsArr} /> */}
-      {/* <ContactForm onSubmit={handleAddContact} /> */}
-      <Form onSubmit={handleAddContact} onClick={showModalForDeleteContact} />
-      {/* <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} /> */}
-      {/* <ContactDetailItem
+      <ContactDetailItem
         contacts={contactsArr}
         onClick={showModalForDeleteContact}
-      /> */}
+      />
       {showModal && (
         <Modal onClick={() => toogleModal} close={toogleModal}>
           <p className={styles.text}>
@@ -81,4 +68,8 @@ const ContactDetailPage = () => {
     </>
   );
 };
-export default ContactDetailPage;
+ContactDetailList.propTypes = {
+  contacts: PropTypes.array,
+};
+
+export default ContactDetailList;

@@ -1,9 +1,7 @@
 import { lazy, React } from 'react';
 
 const ContactsPage = lazy(() =>
-  import(
-    './Pages/ContactPage/ContactsPage' /* webpackChunkName: "Contactlist" */
-  ),
+  import('./Pages/ContactPage' /* webpackChunkName: "Contactlist" */),
 );
 const ContactDetailPage = lazy(() =>
   import('./Pages/ContactDetailsPage' /* webpackChunkName: "ContactDetails" */),
@@ -18,7 +16,7 @@ const routes = [
   },
   {
     path: '/ContactDetailPage',
-    label: ContactDetailPage,
+    label: 'ContactDetailPage',
     element: ContactDetailPage,
     isProtected: true,
     // exact: true,

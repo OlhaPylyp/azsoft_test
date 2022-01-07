@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './Form.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 import RemoveBtn from '../RemoveBtn';
+import Modal from '../Modal';
 
 const contactsArray = [
   {
@@ -36,9 +37,9 @@ const contactsArray = [
   },
   {
     id: 3,
-    name: 'tel',
+    name: 'telephone',
     value: '',
-    type: 'tel',
+    type: 'telephone',
     pattern:
       '+?( |-|.)?d{1,2}( |-|.)?)?((?d{3})?|d{3})( |-|.)?(d{3}( |-|.)?d{4}',
     title: 'Имя может состоять только из букв, апострофа, тире и пробелов. ',
@@ -56,9 +57,9 @@ const contactsArray = [
   },
 ];
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onSubmit, onClick }) => {
   const [state, setState] = useState(contactsArray);
-
+  // const [showModal, setModal] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
     // const newState = ['name', 'surname', 'tel', 'email'].map(
@@ -69,7 +70,7 @@ const Form = ({ onSubmit }) => {
       id: uuidv4(), // uuid
       name: state.find(({ name }) => name === 'name').value,
       surname: state.find(({ name }) => name === 'surname').value,
-      tel: state.find(({ name }) => name === 'tel').value,
+      telephone: state.find(({ name }) => name === 'telephone').value,
       email: state.find(({ name }) => name === 'email').value,
       work: state.find(({ name }) => name === 'work').value,
     };
@@ -79,9 +80,6 @@ const Form = ({ onSubmit }) => {
     onSubmit(newItem);
   };
   let handleChange = (i, e) => {
-    let newFormValues = [...state];
-    // const name = newFormValues.map(({ name }) => name);
-    // const value = newFormValues.map(({ value }) => value);
     const newValue = state.find(({ name }) => name === e.target.name);
     if (newValue) {
       newValue.value = e.target.value;
@@ -89,23 +87,13 @@ const Form = ({ onSubmit }) => {
       setState([...state]);
       console.log('state', state);
     }
-
-    // setState(prevState => ({
-    //   ...state,
-    //   [e.target.name]: e.target.value,
-    // }));
-    console.log('newFormValues', newFormValues);
   };
-
-  // let addFormFields = () => {
-  //   const addInput = state.contacts.filter(({ added }) => added === false);
-  //   setState([...prevState, newContact]);
-  // };
+  // const toogleModal = setModal(!showModal);
   let addFormFields = () => {
     const newItem = state.find(({ added }) => added === false);
     if (newItem) {
       newItem.added = true;
-      state[newItem.id] = newItem;
+      // state[newItem.id] = newItem;
       setState([...state]);
     }
   };
@@ -134,12 +122,24 @@ const Form = ({ onSubmit }) => {
                     title={title}
                   />
                 </label>
-
+                {/* {showModal && (
+                  <Modal onClick={() => toogleModal} close={toogleModal}>
+                    <p className={styles.text}>
+                      Are you sure you want to delete the contact
+                    </p>
+                    <button className={styles.btn} onClick={removeFormFields}>
+                      Yes
+                    </button>
+                    <button className={styles.btn} onClick={toogleModal}>
+                      No
+                    </button>
+                  </Modal>
+                )} */}
                 {index ? (
                   <button
                     type="button"
                     className={styles.btnRemove}
-                    onClick={() => removeFormFields(index)}
+                    onClick={removeFormFields}
                   >
                     -
                   </button>

@@ -3,7 +3,7 @@ import styles from './App.module.scss';
 // import { useAlert } from 'react-alert';
 // import { useState, useEffect } from 'react';
 // import ContactsList from './Components/ContactList/ContactList';
-import ContactPage from './Pages/ContactPage/ContactsPage';
+import ContactPage from './Pages/ContactPage';
 import { Route, NavLink, Routes } from 'react-router-dom';
 // import Section from './Components/Section/Section';
 
@@ -18,18 +18,20 @@ import routes from './Routes';
 //   ),
 // );
 import ContactDetailPage from './Pages/ContactDetailsPage';
-import ContactDetailItem from './Components/ContactDetailsItem';
-import ContactItem from './Components/ContactItem/ContactItem';
+import ContactDetailList from './Components/ContactDetailsList';
 function App() {
   return (
     <div className={`${styles.Wrapper} ${styles.container}`}>
       <Routes>
+        {/* {routes.map(({ path, element, label }) => (
+          <Route key={path} path={path} />
+        ))} */}
+
         <Route path="/" element={<ContactPage />} />
         <Route path="/ContactDetailPage" element={<ContactDetailPage />} />
-
         <Route
           path="/ContactDetailPage/:contactId"
-          element={<ContactDetailItem />}
+          element={<ContactDetailList />}
         />
 
         {/* <Route path="*" element={<NotFound />} /> */}
