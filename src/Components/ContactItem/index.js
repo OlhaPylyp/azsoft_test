@@ -19,6 +19,7 @@ const ContactItem = ({ contact, onClick }) => {
         <span className={styles.item_name}>{contact.name}</span>
         {/* </div> */}
       </Link>
+
       <button
         id={contact.id}
         type="button"

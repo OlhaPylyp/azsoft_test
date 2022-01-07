@@ -8,7 +8,6 @@ import Icon from '../../Components/Icon';
 
 const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
   const [contactId, setId] = useState('');
   const [showModal, setModal] = useState(false);
   useEffect(() => {
@@ -19,12 +18,6 @@ const ContactDetailPage = () => {
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
-
-  // const handleFilter = ({ target }) => setFilter(target.value);
-
-  // const contactsArr = contacts.filter(contact =>
-  //   contact.name.toLowerCase().includes(filter.toLowerCase()),
-  // );
 
   const handleAddContact = newContact => {
     if (contacts.some(({ surname }) => surname === newContact.surname)) {
