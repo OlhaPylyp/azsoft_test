@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 // import ContactsList from './Pages/ContactList/ContactsPage';
 import ContactList from '../../Components/ContactList/ContactList';
-// import SearchContact from '../../Components/SearchContact';
+import SearchContact from '../../Components/SearchContact';
 
 const ContactPage = () => {
   const [contacts, setContacts] = useState([]);
@@ -25,7 +25,7 @@ const ContactPage = () => {
     const storageContacts = localStorage.getItem('contacts');
     setContacts(JSON.parse(storageContacts));
   }, []);
-  console.log(contacts);
+  console.log('contactsЗфпу', contacts);
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
@@ -53,7 +53,7 @@ const ContactPage = () => {
   };
   return (
     <>
-      {/* <SearchContact filter={filter} onChange={handleFilter} /> */}
+      <SearchContact filter={filter} onChange={handleFilter} />
       <h2 className={styles.title}>Contact List</h2>
       <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} />
       {showModal && (

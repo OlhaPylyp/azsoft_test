@@ -37,6 +37,9 @@
   width: 900px;
   margin-left: auto;
   margin-right: auto;
+  @media screen and (max-width: 767px) {
+    width: 700px;
+  }
 }
 .App-link {
   color: #61dafb;

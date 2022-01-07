@@ -5,6 +5,7 @@ import styles from './Form.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 import RemoveBtn from '../RemoveBtn';
 import Modal from '../Modal';
+import Icons from '../Icon';
 
 const contactsArray = [
   {
@@ -62,9 +63,6 @@ const Form = ({ onSubmit, onClick }) => {
   // const [showModal, setModal] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
-    // const newState = ['name', 'surname', 'tel', 'email'].map(
-    //   item => state.find(({ name }) => name === item).value,
-    // );
 
     const newItem = {
       id: uuidv4(), // uuid
@@ -93,10 +91,10 @@ const Form = ({ onSubmit, onClick }) => {
     const newItem = state.find(({ added }) => added === false);
     if (newItem) {
       newItem.added = true;
-      // state[newItem.id] = newItem;
       setState([...state]);
     }
   };
+
   let removeFormFields = i => {
     let newFormValues = [...state];
     newFormValues.splice(i, 1);
@@ -141,20 +139,18 @@ const Form = ({ onSubmit, onClick }) => {
                     className={styles.btnRemove}
                     onClick={removeFormFields}
                   >
-                    -
+                    <Icons
+                      name="bin"
+                      color="rgb(226, 67, 3)"
+                      size="15"
+                      className={styles.item_icon}
+                    />
                   </button>
                 ) : null}
               </div>
             ) : null,
           )}
-          {/* <button
-            type="button"
-            className={styles.btnRemove}
-            onClick={() => removeFormFields()}
-          >
-            -
-          </button>
-          , */}
+
           <div className={styles.btn_container}>
             <button className={styles.btn} type="submit">
               Save

@@ -1,12 +1,10 @@
 import React from 'react';
 import Form from '../../Components/Form';
-import ContactForm from '../../Components/ContactForm';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ContactDetailsPage.module.scss';
-import ContactList from '../../Components/ContactList/ContactList';
-import ContactDetailItem from '../../Components/ContactDetailsList';
 import Modal from '../../Components/Modal';
+import Icon from '../../Components/Icon';
 
 const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
@@ -24,15 +22,16 @@ const ContactDetailPage = () => {
 
   // const handleFilter = ({ target }) => setFilter(target.value);
 
-  const contactsArr = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase()),
-  );
+  // const contactsArr = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase()),
+  // );
 
   const handleAddContact = newContact => {
-    if (contacts.some(contact => contact.name === newContact.name)) {
-      window.alert(`Contact is already in contacts.`);
+    if (contacts.some(({ surname }) => surname === newContact.surname)) {
+      window.alert(`Contact ${newContact.surname} already used`);
       return;
     }
+
     setContacts(prevState => [...prevState, newContact]);
   };
 
@@ -55,16 +54,15 @@ const ContactDetailPage = () => {
       {' '}
       <Link to="/" className={styles.link}>
         {' '}
-        go Back
+        <Icon
+          name="arrow-left"
+          color="rgb(27, 27, 29)"
+          size="15"
+          className={styles.icon}
+        />
+        <span className={styles.span}> Home</span>
       </Link>
-      {/* <ContactDetailItem contacts={contactsArr} /> */}
-      {/* <ContactForm onSubmit={handleAddContact} /> */}
       <Form onSubmit={handleAddContact} onClick={showModalForDeleteContact} />
-      {/* <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} /> */}
-      {/* <ContactDetailItem
-        contacts={contactsArr}
-        onClick={showModalForDeleteContact}
-      /> */}
       {showModal && (
         <Modal onClick={() => toogleModal} close={toogleModal}>
           <p className={styles.text}>
