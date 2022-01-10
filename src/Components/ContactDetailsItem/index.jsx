@@ -1,11 +1,19 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactDetailsItem.module.scss';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link, useParams, useNavigate } from 'react-router-dom';
 // import RemoveBtn from '../RemoveBtn';
 import Icons from '../Icon';
 
-const ContactDetailItem = ({ contacts, onClick }) => {
+const ContactDetailItem = ({ contacts, onClick, location: { state } }) => {
+  // useEffect(() => {
+  //   const storageContacts = localStorage.getItem('contacts');
+  //   setContacts(JSON.parse(storageContacts));
+  // }, []);
+  let params = useParams();
+  let navigate = useNavigate();
+  const location = useLocation();
+  const { pathname, search } = location;
   return (
     <div>
       <ul className={styles.list}>
@@ -18,17 +26,29 @@ const ContactDetailItem = ({ contacts, onClick }) => {
               <li className={styles.item_name}>Email:{email}</li>
               <li className={styles.item_name}>Workplace:{workplace}</li>
             </ul>
+            {/* <Link to="/ContactDetailPage"> */}
+            <button
+              type="button"
+              onClick={() =>
+                navigate({
+                  pathname: '/ContactDetailPage',
+                  search: `?query=${state.query}`,
+                })
+              }
+              className={styles.item__btn}
+            >
+              <Icons
+                name="pencil2"
+                color="rgb(27, 27, 29)"
+                size="20"
+                className={styles.item_icon}
+              />
+            </button>
+            {/* </Link> */}
           </li>
         ))}
       </ul>
-      <button type="button" onClick={onClick} className={styles.item__btn}>
-        <Icons
-          name="pencil2"
-          color="rgb(27, 27, 29)"
-          size="20"
-          className={styles.item_icon}
-        />
-      </button>
+
       {/* <button onClick={goBack}>go Back</button>; */}
     </div>
   );
@@ -40,7 +60,7 @@ ContactDetailItem.propTypes = {
     id: PropTypes.string.isRequired,
     // number: PropTypes.number.isRequired,
   }),
-  onClick: PropTypes.func.isRequired,
+  // onClick: PropTypes.func.isRequired,
 };
 
 export default ContactDetailItem;

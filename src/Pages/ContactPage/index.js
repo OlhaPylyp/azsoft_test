@@ -26,10 +26,6 @@ const ContactPage = () => {
     setContacts(JSON.parse(storageContacts));
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  });
-
   const handleFilter = ({ target }) => setFilter(target.value);
 
   const contactsArr = contacts.filter(contact =>

@@ -5,6 +5,7 @@ import styles from './App.module.scss';
 // import ContactsList from './Components/ContactList/ContactList';
 import ContactPage from './Pages/ContactPage';
 import { Route, NavLink, Routes } from 'react-router-dom';
+
 // import Section from './Components/Section/Section';
 
 // import { Suspense } from 'react';
