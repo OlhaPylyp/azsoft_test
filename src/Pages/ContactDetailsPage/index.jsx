@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from '../../Components/Form';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './ContactDetailsPage.module.scss';
 import Modal from '../../Components/Modal';
 import Icon from '../../Components/Icon';
@@ -11,15 +11,26 @@ const ContactDetailPage = () => {
   const [contactId, setId] = useState('');
   const [addedContactId, setAdd] = useState('');
   const [showModal, setModal] = useState(false);
+  let navigate = useNavigate();
+
   useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
-    setContacts(JSON.parse(storageContacts));
+    if (storageContacts) {
+      setContacts(JSON.parse(storageContacts));
+    }
   }, []);
-
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
-
+  // useEffect(() => {
+  //   navigate({
+  //     pathname: `/ContactDetailPage/${addedContactId}`,
+  //     // state: {
+  //     //   query,
+  //     // },
+  //   });
+  //   console.log('navigate', navigate);
+  // });
   const handleAddContact = newContact => {
     console.log('newContact', newContact);
 
@@ -27,6 +38,7 @@ const ContactDetailPage = () => {
       window.alert(`Contact ${newContact.surname} already used`);
       return;
     }
+
     setContacts(prevState => [...prevState, newContact]);
     setAdd(newContact.id);
   };
@@ -45,9 +57,10 @@ const ContactDetailPage = () => {
 
   const toogleModal = () => setModal(!showModal);
 
+  console.log('addedContactId', addedContactId);
+
   return (
     <>
-      {' '}
       <Link to="/" className={styles.link}>
         {' '}
         <Icon
@@ -60,9 +73,10 @@ const ContactDetailPage = () => {
       </Link>
       <Form
         onSubmit={handleAddContact}
-        id={addedContactId}
+        idAdded={addedContactId}
         onClick={showModalForDeleteContact}
       />
+
       {showModal && (
         <Modal onClick={() => toogleModal} close={toogleModal}>
           <p className={styles.text}>

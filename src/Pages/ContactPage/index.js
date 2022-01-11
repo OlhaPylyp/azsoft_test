@@ -11,7 +11,6 @@ import styles from './ContactPage.module.scss';
 import Modal from '../../Components/Modal';
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-// import ContactsList from './Pages/ContactList/ContactsPage';
 import ContactList from '../../Components/ContactList/ContactList';
 import SearchContact from '../../Components/SearchContact';
 
@@ -23,15 +22,17 @@ const ContactPage = () => {
 
   useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
-    setContacts(JSON.parse(storageContacts));
+    if (storageContacts) {
+      setContacts(JSON.parse(storageContacts));
+    }
   }, []);
-
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  });
   const handleFilter = ({ target }) => setFilter(target.value);
-
-  const contactsArr = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase()),
+  const contactsArr = contacts.filter(({ surname }) =>
+    surname.toLowerCase().includes(filter.toLowerCase()),
   );
-
   /* Функция открытия и закрытия модального окна с выбором ответов */
   const showModalForDeleteContact = ({ target }) => {
     setDelete(target.id);
@@ -51,7 +52,13 @@ const ContactPage = () => {
     <>
       <SearchContact filter={filter} onChange={handleFilter} />
       <h2 className={styles.title}>Contact List</h2>
-      <ContactList contacts={contactsArr} onClick={showModalForDeleteContact} />
+      {contactsArr.length > 0 ? (
+        <ContactList
+          contacts={contactsArr}
+          onClick={showModalForDeleteContact}
+        />
+      ) : null}
+
       {showModal && (
         <Modal onClick={() => toogleModal} close={toogleModal}>
           <p className={styles.text}>

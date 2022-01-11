@@ -14,7 +14,7 @@ const SearchContact = ({ filter, onClick, onChange }) => {
             name="filter"
             onChange={onChange}
             autoComplete="off"
-            placeholder="Search contact..."
+            placeholder="Search contact by surname..."
           />
           <Icon
             name="search"

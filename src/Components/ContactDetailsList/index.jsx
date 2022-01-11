@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './ContactDetailList.module.scss';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ContactDetailItem from '../ContactDetailsItem';
-import Modal from '../Modal';
 
 const ContactDetailList = () => {
   let params = useParams();
@@ -15,17 +14,17 @@ const ContactDetailList = () => {
     const storageContacts = localStorage.getItem('contacts');
     setContacts(JSON.parse(storageContacts));
   }, []);
-
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
 
   // const handleFilter = ({ target }) => setFilter(target.value);
   const contactById = contacts.filter(({ id }) => id === params.contactId);
-
+  console.log('contactById', contactById);
   const contactsArr = contactById.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
   );
+  console.log('contactsArr', contactsArr);
 
   return (
     <>
@@ -34,6 +33,7 @@ const ContactDetailList = () => {
         {' '}
         go Back
       </Link>
+      <ContactDetailItem contacts={contactsArr} />
       {/* <button
         onClick={() =>
           navigate({
@@ -44,7 +44,6 @@ const ContactDetailList = () => {
       >
         Go Back
       </button> */}
-      <ContactDetailItem contacts={contactsArr} />
     </>
   );
 };

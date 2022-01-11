@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Icons from '../Icon';
 
 const ContactItem = ({ contact, onClick }) => {
+  console.log('contactItem=', contact);
   const { pathname } = useLocation();
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from './Form.module.scss';
@@ -6,7 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 import queryString from 'query-string';
 import Modal from '../Modal';
 import Icons from '../Icon';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+  createSearchParams,
+} from 'react-router-dom';
 
 const contactsArray = [
   {
@@ -17,6 +23,7 @@ const contactsArray = [
     pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
     title: 'Имя может состоять только из букв, апострофа, тире и пробелов. ',
     added: true,
+    required: '',
   },
   {
     id: 1,
@@ -59,21 +66,46 @@ const contactsArray = [
   },
 ];
 
-const Form = ({ onSubmit, onClick, id }) => {
+const Form = ({ onSubmit, onClick, idAdded }) => {
   const [state, setState] = useState(contactsArray);
   const [deleteInput, setDelete] = useState('');
-
   const [showModal, setModal] = useState(false);
+  // const [searchParams, setSearchParams] = useSearchParams();
+
+  //const [query, setQuery] = useState([]);
+  // const valueSearch = searchParams.get('name') || '';
+
   const location = useLocation();
   let navigate = useNavigate();
+  // const inputRef = useRef();
 
   const { pathname, search } = location;
   console.log('pathname=', pathname);
-  const [query, setQuery] = useState(queryString.parse(search).query || '');
+  //const [query, setQuery] = useState(queryString.parse(search).query || '');
+  // // useEffect(() => {
+  //   // inputRef.current.focus();
+  // }, []); // eslint-disable-line
+  const params = {
+    name: state.find(({ name }) => name === 'name').value,
+    surname: state.find(({ name }) => name === 'surname').value,
+  };
+
+  const goToContactInfo = () => {
+    navigate({
+      pathname: `/ContactDetailPage/${idAdded}`,
+      // // state: {
+      // //   query,
+      // // },
+      // search: `?${createSearchParams(params)}`,
+    });
+    console.log('navigate', navigate);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
+    console.log('idAdded', idAdded);
     const newItem = {
-      id: uuidv4(), // uuid
+      id: idAdded === '' ? uuidv4() : idAdded,
       name: state.find(({ name }) => name === 'name').value,
       surname: state.find(({ name }) => name === 'surname').value,
       telephone: state.find(({ name }) => name === 'telephone').value,
@@ -81,26 +113,30 @@ const Form = ({ onSubmit, onClick, id }) => {
       work: state.find(({ name }) => name === 'work').value,
     };
 
+    console.log('newItem.id', newItem.id);
     onSubmit(newItem);
-    navigate({ pathname: `/ContactDetailPage/${id}` });
   };
+
   let handleChange = (i, e) => {
     const newValue = state.find(({ name }) => name === e.target.name);
+
     if (newValue) {
       newValue.value = e.target.value;
       state[newValue.id] = newValue;
       setState([...state]);
-      console.log('state', state);
     }
-    console.log('e.target.value=', e.target.value);
-    setQuery(e.target.value);
-    console.log('query', query);
-    navigate({
-      ...location,
-      search: `?query=${e.target.value}`,
-    });
+    // const query = e.target.value;
+    // console.log('query', query);
+    // const params = {};
+    // if (query.length) params.name = query;
+    // setSearchParams(params);
+    // console.log('params', searchParams.get(params));
+    // setQuery(e.target.value);
+    // navigate({
+    //   search: `?query=""`,
+    // });
   };
-  const toogleModal = () => setModal(!showModal);
+
   let addFormFields = () => {
     const newItem = state.find(({ added }) => added === false);
     if (newItem) {
@@ -108,6 +144,7 @@ const Form = ({ onSubmit, onClick, id }) => {
       setState([...state]);
     }
   };
+  const toogleModal = () => setModal(!showModal);
   const showModalForDeleteContact = idItem => {
     setDelete(idItem);
     toogleModal();
@@ -132,16 +169,19 @@ const Form = ({ onSubmit, onClick, id }) => {
                       className={`${styles.form_input}  `}
                       type={type}
                       name={name}
-                      // value={name}
+                      value={value}
+                      // ref={inputRef}
                       onChange={e => handleChange(index, e)}
                       pattern={pattern}
                       title={title}
+                      autoComplete="off"
+                      required
                     />
                   </label>
                   {showModal && (
                     <Modal onClick={toogleModal} onClose={toogleModal}>
                       <p className={styles.text}>
-                        Are you sure you want to delete the contact
+                        Are you sure you want to delete input field {name}
                       </p>
                       <button className={styles.btn} onClick={removeFormFields}>
                         Yes
@@ -177,7 +217,7 @@ const Form = ({ onSubmit, onClick, id }) => {
             <button
               className={styles.btn}
               type="submit"
-              onClick={() => handleSubmit}
+              onClick={goToContactInfo}
             >
               Save
             </button>
