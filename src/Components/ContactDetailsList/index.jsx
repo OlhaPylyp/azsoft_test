@@ -20,11 +20,10 @@ const ContactDetailList = () => {
 
   // const handleFilter = ({ target }) => setFilter(target.value);
   const contactById = contacts.filter(({ id }) => id === params.contactId);
-  console.log('contactById', contactById);
+
   const contactsArr = contactById.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
   );
-  console.log('contactsArr', contactsArr);
 
   return (
     <>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './Form.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 import queryString from 'query-string';
+
 import Modal from '../Modal';
 import Icons from '../Icon';
 import {
@@ -80,32 +81,41 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
   // const inputRef = useRef();
 
   const { pathname, search } = location;
-  console.log('pathname=', pathname);
+  // useEffect(() => {
+  //   navigate({
+  //     pathname: `/ContactDetailPage/${idAdded}`,
+  //     // // state: {
+  //     // //   query,
+  //     // // },
+  //     // search: `?${createSearchParams(params)}`,
+  //   });
+  // });
+
   //const [query, setQuery] = useState(queryString.parse(search).query || '');
   // // useEffect(() => {
   //   // inputRef.current.focus();
   // }, []); // eslint-disable-line
-  const params = {
-    name: state.find(({ name }) => name === 'name').value,
-    surname: state.find(({ name }) => name === 'surname').value,
-  };
+  // const params = {
+  //   name: state.find(({ name }) => name === 'name').value,
+  //   surname: state.find(({ name }) => name === 'surname').value,
+  // };
 
-  const goToContactInfo = () => {
-    navigate({
-      pathname: `/ContactDetailPage/${idAdded}`,
-      // // state: {
-      // //   query,
-      // // },
-      // search: `?${createSearchParams(params)}`,
-    });
-    console.log('navigate', navigate);
-  };
+  // const goToContactInfo = () => {
+  //   navigate({
+  //     pathname: `/ContactDetailPage/${idAdded}`,
+  //     // // state: {
+  //     // //   query,
+  //     // // },
+  //     // search: `?${createSearchParams(params)}`,
+  //   });
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('idAdded', idAdded);
+
     const newItem = {
-      id: idAdded === '' ? uuidv4() : idAdded,
+      // id: idAdded === '' ? uuidv4() : idAdded,
+      id: uuidv4(),
       name: state.find(({ name }) => name === 'name').value,
       surname: state.find(({ name }) => name === 'surname').value,
       telephone: state.find(({ name }) => name === 'telephone').value,
@@ -113,8 +123,15 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
       work: state.find(({ name }) => name === 'work').value,
     };
 
-    console.log('newItem.id', newItem.id);
     onSubmit(newItem);
+    // state.map(item => (item.value = ''));
+    navigate({
+      pathname: `/ContactDetailPage/${idAdded}`,
+      // // state: {
+      // //   query,
+      // // },
+      // search: `?${createSearchParams(params)}`,
+    });
   };
 
   let handleChange = (i, e) => {
@@ -125,6 +142,7 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
       state[newValue.id] = newValue;
       setState([...state]);
     }
+
     // const query = e.target.value;
     // console.log('query', query);
     // const params = {};
@@ -214,17 +232,13 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
               to={}
               // className={styles.btn}
             > */}
-            <button
-              className={styles.btn}
-              type="submit"
-              onClick={goToContactInfo}
-            >
+            <button className={styles.btn} type="submit" onClick={handleSubmit}>
               Save
             </button>
             {/* </Link> */}
             <button
               className={styles.btn}
-              onClick={() => addFormFields()}
+              onClick={addFormFields}
               type="button"
             >
               + Input

@@ -22,6 +22,7 @@ const ContactPage = () => {
 
   useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
+
     if (storageContacts) {
       setContacts(JSON.parse(storageContacts));
     }

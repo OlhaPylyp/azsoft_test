@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Contact.module.scss';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, createSearchParams } from 'react-router-dom';
 import Icons from '../Icon';
 
 const ContactItem = ({ contact, onClick }) => {
-  console.log('contactItem=', contact);
   const { pathname } = useLocation();
 
   return (
     <li key={contact.id} className={styles.item}>
-      {console.log('pathname', pathname)}
       <Link
-        to={{ pathname: `/ContactDetailPage/${contact.id}` }}
+        to={{
+          pathname: `/ContactDetailPage/${contact.id}`,
+          // search: `?${createSearchParams({
+          //   name: contact.name,
+          //   surname: contact.surname,
+          // })}`,
+        }}
         className={styles.item_link}
       >
         {/* <div className={styles.item__container}> */}{' '}

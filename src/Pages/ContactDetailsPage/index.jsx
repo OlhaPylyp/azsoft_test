@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './ContactDetailsPage.module.scss';
 import Modal from '../../Components/Modal';
 import Icon from '../../Components/Icon';
+import ContactDetailList from '../../Components/ContactDetailsList';
 
 const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
@@ -32,13 +33,28 @@ const ContactDetailPage = () => {
   //   console.log('navigate', navigate);
   // });
   const handleAddContact = newContact => {
-    console.log('newContact', newContact);
-
     if (contacts.some(({ surname }) => surname === newContact.surname)) {
       window.alert(`Contact ${newContact.surname} already used`);
       return;
     }
 
+    // console.log('handleAddContact newContact=', newContact);
+
+    // let alreadyExsist = false;
+    // contacts.forEach((element, index) => {
+    //   if (element.id === newContact.id) {
+    //     contacts[index] = newContact;
+    //     alreadyExsist = true;
+    //   }
+    // });
+
+    // if (alreadyExsist) {
+    //   console.log(' update contact');
+    //   setContacts([...contacts]);
+    // } else {
+    //   console.log(' add new contact');
+    //   setContacts(prevState => [...prevState, newContact]);
+    // }
     setContacts(prevState => [...prevState, newContact]);
     setAdd(newContact.id);
   };
@@ -57,8 +73,6 @@ const ContactDetailPage = () => {
 
   const toogleModal = () => setModal(!showModal);
 
-  console.log('addedContactId', addedContactId);
-
   return (
     <>
       <Link to="/" className={styles.link}>
@@ -76,7 +90,7 @@ const ContactDetailPage = () => {
         idAdded={addedContactId}
         onClick={showModalForDeleteContact}
       />
-
+      {/* <ContactDetailList contacts={contacts} /> */}
       {showModal && (
         <Modal onClick={() => toogleModal} close={toogleModal}>
           <p className={styles.text}>
