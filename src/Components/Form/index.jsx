@@ -168,8 +168,15 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
     toogleModal();
   };
   let removeFormFields = () => {
-    const newContactList = state.filter(contact => contact.id !== deleteInput);
-    setState([...newContactList]);
+    // const newInputList = state.filter(contact => contact.id !== deleteInput);
+    // setState([...newInputList]);
+    state.forEach(input => {
+      if (input.id === deleteInput) {
+        input.added = false;
+      }
+    });
+    setState([...state]);
+
     toogleModal();
   };
 
