@@ -24,7 +24,6 @@ const contactsArray = [
     pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
     title: 'Имя может состоять только из букв, апострофа, тире и пробелов. ',
     added: true,
-    required: '',
   },
   {
     id: 1,
@@ -78,22 +77,23 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
 
   const location = useLocation();
   let navigate = useNavigate();
-  // const inputRef = useRef();
 
   const { pathname, search } = location;
   // useEffect(() => {
-  //   navigate({
-  //     pathname: `/ContactDetailPage/${idAdded}`,
-  //     // // state: {
-  //     // //   query,
-  //     // // },
-  //     // search: `?${createSearchParams(params)}`,
-  //   });
-  // });
-
+  //   goToContactPage();
+  // }, []);
+  const goToContactPage = () => {
+    navigate({
+      pathname: `/ContactDetailPage/${idAdded}`,
+      // state: {
+      //   query,
+      // },
+    });
+    console.log('navigate', navigate);
+  };
   //const [query, setQuery] = useState(queryString.parse(search).query || '');
-  // // useEffect(() => {
-  //   // inputRef.current.focus();
+  // useEffect(() => {
+  //   inputRef.current.focus();
   // }, []); // eslint-disable-line
   // const params = {
   //   name: state.find(({ name }) => name === 'name').value,
@@ -125,13 +125,13 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
 
     onSubmit(newItem);
     // state.map(item => (item.value = ''));
-    navigate({
-      pathname: `/ContactDetailPage/${idAdded}`,
-      // // state: {
-      // //   query,
-      // // },
-      // search: `?${createSearchParams(params)}`,
-    });
+    // navigate({
+    //   pathname: `/ContactDetailPage/${idAdded}`,
+    //   // // state: {
+    //   // //   query,
+    //   // // },
+    //   // search: `?${createSearchParams(params)}`,
+    // });
   };
 
   let handleChange = (i, e) => {
@@ -173,6 +173,7 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
     state.forEach(input => {
       if (input.id === deleteInput) {
         input.added = false;
+        // input.value = '';
       }
     });
     setState([...state]);
@@ -239,7 +240,11 @@ const Form = ({ onSubmit, onClick, idAdded }) => {
               to={}
               // className={styles.btn}
             > */}
-            <button className={styles.btn} type="submit" onClick={handleSubmit}>
+            <button
+              className={styles.btn}
+              type="submit"
+              onClick={goToContactPage}
+            >
               Save
             </button>
             {/* </Link> */}

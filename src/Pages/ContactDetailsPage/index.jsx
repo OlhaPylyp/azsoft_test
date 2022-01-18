@@ -6,7 +6,7 @@ import styles from './ContactDetailsPage.module.scss';
 import Modal from '../../Components/Modal';
 import Icon from '../../Components/Icon';
 import ContactDetailList from '../../Components/ContactDetailsList';
-
+import { Notification } from 'react-pnotify';
 const ContactDetailPage = () => {
   const [contacts, setContacts] = useState([]);
   const [contactId, setId] = useState('');
@@ -23,16 +23,17 @@ const ContactDetailPage = () => {
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   });
-  // useEffect(() => {
-  //   navigate({
-  //     pathname: `/ContactDetailPage/${addedContactId}`,
-  //     // state: {
-  //     //   query,
-  //     // },
-  //   });
-  //   console.log('navigate', navigate);
-  // });
+
   const handleAddContact = newContact => {
+    if (newContact.name === '') {
+      window.alert(`Input surname`);
+      return;
+    }
+    if (newContact.surname === '') {
+      window.alert(`Input surname`);
+
+      return;
+    }
     if (contacts.some(({ surname }) => surname === newContact.surname)) {
       window.alert(`Contact ${newContact.surname} already used`);
       return;
